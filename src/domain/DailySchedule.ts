@@ -1,9 +1,9 @@
 import Interval from "./Interval";
 import Period from "./Period";
-import ScheduleBuilder, { Times } from "./ScheduleBuilder";
+import Schedule, { Times } from "./Schedule";
 import dayjs from "../utils/Days";
 
-export default class DailySchedule implements ScheduleBuilder {
+export default class DailySchedule implements Schedule {
     constructor(readonly period: Period, readonly intervals: Interval[]){
         if(!intervals.length) throw new Error("Schedule Must have at lesat one interval time");
     }

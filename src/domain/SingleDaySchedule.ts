@@ -1,8 +1,8 @@
 import Interval from "./Interval";
-import ScheduleBuilder, { Times } from "./ScheduleBuilder";
+import Schedule, { Times } from "./Schedule";
 import dayjs from "../utils/Days";
 
-export default class SingleDaySchedule implements ScheduleBuilder {
+export default class SingleDaySchedule implements Schedule {
     constructor(readonly targetDate: Date, readonly intervals: Interval[]){}
 
     generate(): Times[] {

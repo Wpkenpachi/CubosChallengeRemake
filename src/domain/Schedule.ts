@@ -1,7 +1,8 @@
-import Interval from "./Interval";
-import Period from "./Period";
-import dayjs from "../utils/Days";
+export default interface Schedule {
+    generate(): Times[]
+}
 
-export default class Schedule {
-    constructor(){}
+export type Times = {
+    day: string;
+    intervals: { start: string, end: string }[]
 }
