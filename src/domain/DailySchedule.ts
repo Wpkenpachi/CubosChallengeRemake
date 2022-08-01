@@ -4,7 +4,9 @@ import ScheduleBuilder, { Times } from "./ScheduleBuilder";
 import dayjs from "../utils/Days";
 
 export default class DailySchedule implements ScheduleBuilder {
-    constructor(readonly period: Period, readonly intervals: Interval[]){}
+    constructor(readonly period: Period, readonly intervals: Interval[]){
+        if(!intervals.length) throw new Error("Schedule Must have at lesat one interval time");
+    }
 
     generate(): Times[] {
         const startDate = dayjs(this.period.startDate);

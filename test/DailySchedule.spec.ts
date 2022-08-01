@@ -21,3 +21,8 @@ test("Must create a daily shcedule", function() {
         }
     ]);
 });
+
+test("Must create a daily shcedule without interval time", function() {
+    const period = new Period(new Date("2022-01-01T00:00:00"), new Date("2022-01-02T00:00:00"));
+    expect(() => new DailySchedule(period, [])).toThrow(new Error("Schedule Must have at lesat one interval time"));
+});
