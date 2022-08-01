@@ -3,6 +3,6 @@ export default interface Schedule {
 }
 
 export type Times = {
-    day: string;
+    day: Date;
     intervals: { start: string, end: string }[]
 }

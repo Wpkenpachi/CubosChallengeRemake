@@ -15,7 +15,7 @@ export default class DailySchedule implements Schedule {
         const times: Times[]= [];
         for (let i = 0; i <= diff; i++) {
             times.push({
-                day: i > 0 ? dayjs(this.period.startDate).add(1, 'day').format('DD-MM-YYYY') : dayjs(this.period.startDate).format('DD-MM-YYYY'),
+                day: i > 0 ? dayjs(this.period.startDate, "YYYY-MM-DDTHH:mm:ss").add(1, 'day').toDate() : dayjs(this.period.startDate, "YYYY-MM-DDTHH:mm:ss").toDate(),
                 intervals: this.intervals.map(interval => ({ start: interval.startTime, end: interval.endTime }))
             });
         }

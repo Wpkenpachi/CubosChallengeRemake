@@ -12,12 +12,30 @@ test("Must create a daily shcedule", function() {
     const generated = daily.generate();
     expect(generated).toEqual([
         {
-            day: "01-01-2022",
-            intervals: [{start: "08:00", end: "09:00"}, {start: "09:00", end: "10:00"}]
+            day: new Date("2022-01-01T00:00:00"),
+            intervals: [
+                {
+                    start: "08:00",
+                    end: "09:00"
+                },
+                {
+                    start: "09:00",
+                    end: "10:00"
+                }
+            ]
         },
         {
-            day: "02-01-2022",
-            intervals: [{start: "08:00", end: "09:00"}, {start: "09:00", end: "10:00"}]
+            day: new Date("2022-01-02T00:00:00"),
+            intervals: [
+                {
+                    start: "08:00",
+                    end: "09:00"
+                },
+                {
+                    start: "09:00",
+                    end: "10:00"
+                }
+            ]
         }
     ]);
 });

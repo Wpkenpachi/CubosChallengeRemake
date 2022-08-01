@@ -6,7 +6,7 @@ export default class SingleDaySchedule implements Schedule {
     constructor(readonly targetDate: Date, readonly intervals: Interval[]){}
 
     generate(): Times[] {
-        const day = dayjs(this.targetDate).format('DD-MM-YYYY');
+        const day = dayjs(this.targetDate, "YYYY-MM-DDTHH:mm:ss").toDate();
         let time: Times = {
             day,
             intervals: []

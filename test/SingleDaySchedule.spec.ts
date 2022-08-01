@@ -10,7 +10,7 @@ test("Must crate a single day schedule", function() {
     const singleday = new SingleDaySchedule(targetDate, intervals);
     const [generated] = singleday.generate();
     expect(generated).toEqual({
-        day: dayjs(targetDate).format("DD-MM-YYYY"),
+        day: dayjs(targetDate).toDate(),
         intervals: [{start: "09:00", end: "10:00"}]
     });
 });
