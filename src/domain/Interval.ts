@@ -2,7 +2,7 @@ import PeriodValidator from "../utils/PeriodValidator";
 import IPeriodValidator from "../utils/interfaces/IPeriodValidator";
 
 export default class Interval {
-    validator: IPeriodValidator;
+    private validator: IPeriodValidator;
 
     constructor(readonly startTime: string, readonly endTime: string) {
         this.validator = new PeriodValidator();

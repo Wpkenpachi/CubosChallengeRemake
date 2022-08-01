@@ -1,5 +1,5 @@
 export default interface ScheduleBuilder {
-    build(): Times[]
+    generate(): Times[]
 }
 
 export type Times = {
