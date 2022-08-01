@@ -12,11 +12,18 @@ export default class Interval {
         if(!this.validator.isValidTimePeriod(startTime, endTime)) throw new Error("Invalid Time Period");
     }
 
+    // private isValidTimeString(time: string): boolean {
+    //     const rgx = new RegExp("^[0-9]{2}\:[0-9]{2}$", "gm");
+    //     return time.match(rgx) as unknown as boolean;
+    // }
+
     private extractHour(datetime: string): number {
+        // if (!this.isValidTimeString(datetime)) throw new Error("Invalid Time Period");
         return parseInt(datetime.split(":")[0])
     }
 
     private extractMin(datetime: string): number {
+        // if (!this.isValidTimeString(datetime)) throw new Error("Invalid Time Period");
         return parseInt(datetime.split(":")[1])
     }
 

@@ -8,28 +8,28 @@ test("Must create an invalid Interval", function() {
     expect(() => new Interval("10:00", "09:00")).toThrow(new Error("Invalid Time Period"));
 });
 
-test("Must validate left-center crossing", function () {
+test("Must validate left-center crossing interval", function () {
     const defaultInterval   = new Interval("08:00", "10:00");
     const targetDate        = new Date("2022-01-01T00:00:00");
     const targetInterval    = new Interval("07:30", "09:00");
     expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeTruthy();
 });
 
-test("Must validate center-center crossing", function () {
+test("Must validate center-center crossing interval", function () {
     const defaultInterval   = new Interval("08:00", "10:00");
     const targetDate        = new Date("2022-01-01T00:00:00");
     const targetInterval    = new Interval("08:30", "09:00");
     expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeTruthy();
 });
 
-test("Must validate center-right crossing", function () {
+test("Must validate center-right crossing interval", function () {
     const defaultInterval   = new Interval("08:00", "10:00");
     const targetDate        = new Date("2022-01-01T00:00:00");
     const targetInterval    = new Interval("08:30", "11:00");
     expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeTruthy();
 });
 
-test("Must validate non-crossing", function () {
+test("Must validate non-crossing interval", function () {
     const defaultInterval   = new Interval("08:00", "10:00");
     const targetDate        = new Date("2022-01-01T00:00:00");
     const targetInterval    = new Interval("11:00", "11:30");
