@@ -33,7 +33,7 @@ test("Must compare conflicting schedule rules exact-same conflict", function () 
     const rule2 = new SingleDaySchedule(
         new Date("2022-08-03T00:00:00"),
         [
-            new Interval("10:00", "11:11")
+            new Interval("10:00", "11:00")
         ]
     ).generate();
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
