@@ -9,7 +9,7 @@ test("Must create a weekly schedule", function () {
         new Interval("09:00", "10:00"),
         new Interval("12:00", "13:00")
     ];
-    const weeklySchedule = new WeeklySchedule(period, weekDays, intervals);
-    const schedule = weeklySchedule.generate();
+    const weeklySchedule = new WeeklySchedule(intervals);
+    const schedule = weeklySchedule.generate(period, weekDays);
     expect(schedule).toHaveLength(4);
 });

@@ -8,8 +8,8 @@ test("Must create a daily shcedule", function() {
         new Interval("08:00", "09:00"),
         new Interval("09:00", "10:00")
     ];
-    const daily = new DailySchedule(period, intervals);
-    const generated = daily.generate();
+    const daily = new DailySchedule(intervals);
+    const generated = daily.generate(period, );
     expect(generated).toEqual([
         {
             day: new Date("2022-01-01T00:00:00"),
@@ -51,9 +51,4 @@ test("Must create a daily shcedule", function() {
             ]
         }
     ]);
-});
-
-test("Must create a daily shcedule without interval time", function() {
-    const period = new Period(new Date("2022-01-01T00:00:00"), new Date("2022-01-02T00:00:00"));
-    expect(() => new DailySchedule(period, [])).toThrow(new Error("Schedule Must have at lesat one interval time"));
 });

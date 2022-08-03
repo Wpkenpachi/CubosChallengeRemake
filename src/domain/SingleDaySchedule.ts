@@ -3,10 +3,12 @@ import Schedule, { Times } from "./Schedule";
 import dayjs from "../utils/Days";
 
 export default class SingleDaySchedule implements Schedule {
-    constructor(readonly targetDate: Date, readonly intervals: Interval[]){}
+    days: string[] | number[] = [];
+    constructor(readonly intervals: Interval[]){}
 
-    generate(): Times[] {
-        const day = dayjs(this.targetDate, "YYYY-MM-DDTHH:mm:ss").toDate();
+    generate(targetDate: Date): Times[] {
+        this.days = this.days = [targetDate.toDateString()];
+        const day = dayjs(targetDate, "YYYY-MM-DDTHH:mm:ss").toDate();
         let time: Times = {
             day,
             intervals: []

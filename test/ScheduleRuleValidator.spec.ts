@@ -6,90 +6,80 @@ import SingleDaySchedule from "../src/domain/SingleDaySchedule";
 
 test("Must compare conflicting schedule rules center-center conflict", function () {
     const rule1 = new DailySchedule(
-        new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")),
         [
             new Interval("08:00", "09:00"),
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")));
     const rule2 = new SingleDaySchedule(
-        new Date("2022-08-03T00:00:00"),
         [
             new Interval("10:10", "10:30")
         ]
-    ).generate();
+    ).generate(new Date("2022-08-03T00:00:00"));
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
 test("Must compare conflicting schedule rules exact-same conflict", function () {
     const rule1 = new DailySchedule(
-        new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")),
         [
             new Interval("08:00", "09:00"),
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")));
     const rule2 = new SingleDaySchedule(
-        new Date("2022-08-03T00:00:00"),
         [
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Date("2022-08-03T00:00:00"));
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
 test("Must compare conflicting schedule rules left-center conflict", function () {
     const rule1 = new DailySchedule(
-        new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")),
         [
             new Interval("08:00", "09:00"),
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")));
     const rule2 = new SingleDaySchedule(
-        new Date("2022-08-03T00:00:00"),
         [
             new Interval("07:00", "08:30")
         ]
-    ).generate();
+    ).generate(new Date("2022-08-03T00:00:00"));
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
 test("Must compare conflicting schedule rules center-right conflict", function () {
     const rule1 = new DailySchedule(
-        new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")),
         [
             new Interval("08:00", "09:00"),
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")));
     const rule2 = new SingleDaySchedule(
-        new Date("2022-08-03T00:00:00"),
         [
             new Interval("10:30", "12:00")
         ]
-    ).generate();
+    ).generate(new Date("2022-08-03T00:00:00"));
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
 test("Must compare non-conflicting schedule rules", function () {
     const rule1 = new DailySchedule(
-        new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")),
         [
             new Interval("08:00", "09:00"),
             new Interval("10:00", "11:00")
         ]
-    ).generate();
+    ).generate(new Period(new Date("2022-08-01T00:00:00"), new Date("2022-08-05T00:00:00")));
     const rule2 = new SingleDaySchedule(
-        new Date("2022-08-03T00:00:00"),
         [
             new Interval("11:30", "12:00")
         ]
-    ).generate();
+    ).generate(new Date("2022-08-03T00:00:00"));
     const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
     expect(isValid).toBeFalsy();
 });
