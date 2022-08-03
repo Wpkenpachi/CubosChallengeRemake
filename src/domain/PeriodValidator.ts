@@ -1,7 +1,6 @@
-import IScheduleTimePeriodValidator from "./interfaces/IPeriodValidator";
-import dayjs from "./Days";
+import dayjs from "../utils/Days";
 
-export default class PeriodValidator implements IScheduleTimePeriodValidator {
+export default class PeriodValidator {
     
     isValidTimePeriod(startTime: string, endTime: string): boolean {
         if (!this.isValidTimeString(startTime) || !this.isValidTimeString(endTime)) throw new Error("Invalid Time String");

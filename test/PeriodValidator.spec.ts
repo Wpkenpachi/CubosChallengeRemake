@@ -1,4 +1,4 @@
-import PeriodValidator from "../src/utils/PeriodValidator";
+import PeriodValidator from "../src/domain/PeriodValidator";
 
 test("Must create a invalid date period", function () {
     const validator = new PeriodValidator();

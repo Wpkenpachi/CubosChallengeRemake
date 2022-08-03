@@ -1,4 +1,4 @@
-import PeriodValidator from "../utils/PeriodValidator";
+import PeriodValidator from "./PeriodValidator";
 import IPeriodValidator from "../utils/interfaces/IPeriodValidator";
 
 export default class Period {
