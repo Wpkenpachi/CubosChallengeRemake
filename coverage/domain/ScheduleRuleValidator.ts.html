@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/PeriodValidator.ts</title>
+    <title>Code coverage report for domain/ScheduleRuleValidator.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,27 +19,27 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> PeriodValidator.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">domain</a> ScheduleRuleValidator.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -83,45 +83,48 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">56x</span>
-<span class="cline-any cline-yes">55x</span>
-<span class="cline-any cline-yes">55x</span>
-<span class="cline-any cline-yes">55x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">111x</span>
-<span class="cline-any cline-yes">111x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import IScheduleTimePeriodValidator from "./interfaces/IPeriodValidator";
-import dayjs from "./Days";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Interval from "./Interval";
+import { Times } from "./Schedule";
 &nbsp;
-export default class PeriodValidator implements IScheduleTimePeriodValidator {
-    
-    isValidTimePeriod(startTime: string, endTime: string): boolean {
-        if (!this.isValidTimeString(startTime) || !this.isValidTimeString(endTime)) throw new Error("Invalid Time String");
-        const start_time    = dayjs(new Date(`2000-01-01T${startTime}:00`), "HH:mm");
-        const end_time      = dayjs(new Date(`2000-01-01T${endTime}:00`), "HH:mm");
-        return start_time &lt; end_time ;
-    }
-&nbsp;
-    private isValidTimeString(time: string): boolean {
-        const rgx = new RegExp("^[0-9]{2}\:[0-9]{2}$", "gm");
-        return time.match(rgx) as unknown as boolean
-    }
-    
-    isValidDatePeriod(startDate: Date, endDate: Date): boolean {
-        return startDate.getDate() &lt; endDate.getDate();
+export default class ScheduleRuleValidator {
+    hasconflictedSchedules(firstRule: Times[], secondRule: Times[]): boolean {
+        return firstRule.some(rule1 =&gt; {
+            //console.log('=============================================================');
+            //console.log(`Day ${d1+1}`);
+            return secondRule.some(rule2 =&gt; {
+                const conflictingDates = rule1.day.getTime() == rule2.day.getTime();
+                //console.log(`Dates [${conflictingDates}]`, rule1.day.toLocaleDateString(), ' == ', rule2.day.toLocaleDateString());
+                return conflictingDates &amp;&amp; rule1.intervals.some( interval1 =&gt; {
+                    return rule2.intervals.some(interval2 =&gt; {
+                        const conflictingTimes = (new Interval(interval1.start, interval1.end).isBetweenInterval(rule2.day, new Interval(interval2.start, interval2.end)))
+                        //console.log(`Times [${conflictingTimes}]`, `|${rule2.day.getDate()}|`, interval1.start, interval1.end, '=&gt;', interval2.start, interval2.end);
+                        return conflictingTimes;
+                    })
+                });
+            });
+        });
     }
 }</pre></td></tr></table></pre>
 

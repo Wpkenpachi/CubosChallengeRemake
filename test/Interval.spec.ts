@@ -35,3 +35,24 @@ test("Must validate non-crossing interval", function () {
     const targetInterval    = new Interval("11:00", "11:30");
     expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeFalsy();
 });
+
+test("Must validate exact-same-startTime crossing interval", function () {
+    const defaultInterval   = new Interval("08:00", "10:00");
+    const targetDate        = new Date("2022-01-01T00:00:00");
+    const targetInterval    = new Interval("08:00", "11:00");
+    expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeTruthy();
+});
+
+test("Must validate exact-same-endTime crossing interval", function () {
+    const defaultInterval   = new Interval("08:00", "10:00");
+    const targetDate        = new Date("2022-01-01T00:00:00");
+    const targetInterval    = new Interval("07:30", "10:00");
+    expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeTruthy();
+});
+
+test("Must validate exact-same-startTime-endTime crossing interval", function () {
+    const defaultInterval   = new Interval("08:00", "10:00");
+    const targetDate        = new Date("2022-01-01T00:00:00");
+    const targetInterval    = new Interval("10:00", "11:00");
+    expect(defaultInterval.isBetweenInterval(targetDate, targetInterval)).toBeFalsy();
+});

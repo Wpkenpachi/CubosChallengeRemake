@@ -33,6 +33,8 @@ export default class Interval {
         const targetStartTime   = dayjs(targetDate).hour(this.extractHour(targetInterval.startTime)).minute(this.extractMin(targetInterval.startTime));
         const targetEndTime     = dayjs(targetDate).hour(this.extractHour(targetInterval.endTime)).minute(this.extractMin(targetInterval.endTime));
         return  dayjs(targetStartTime).isBetween(standStartTime, standEndTime) ||
-                dayjs(targetEndTime).isBetween(standStartTime, standEndTime);
+                dayjs(targetEndTime).isBetween(standStartTime, standEndTime) ||
+                targetStartTime.isSame(standStartTime) ||
+                targetEndTime.isSame(standEndTime);
     }
 }
