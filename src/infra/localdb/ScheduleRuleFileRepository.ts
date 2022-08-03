@@ -1,4 +1,3 @@
-import Schedule from "../../domain/Schedule";
 import ScheduleRuleRepository from "../../domain/ScheduleRuleRepository";
 import JsonFileHandler from "../localdb/JsonFileHandler";
 
@@ -20,5 +19,4 @@ export default class ScheduleRuleFileRepository implements ScheduleRuleRepositor
     async remove(index: number): Promise<void> {
         this.filehandler.delete(index);
     }
-
 }
