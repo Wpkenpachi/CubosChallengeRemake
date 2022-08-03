@@ -49,6 +49,14 @@
 - Http Api Server :x:
     - Post route for registering schedule rule
         - body request validator middleware
+        - unit tests
+        - integration tests
     - Get route for list registered schedule rules
+        - unit tests
+        - integration tests
     - Get route for list schedule for a range of dates
+        - unit tests
+        - integration tests
     - Delete route for removing some schedule rule
+        - unit tests
+        - integration tests
