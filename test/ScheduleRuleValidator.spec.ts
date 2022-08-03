@@ -16,7 +16,7 @@ test("Must compare conflicting schedule rules center-center conflict", function 
             new Interval("10:10", "10:30")
         ]
     ).generate(new Date("2022-08-03T00:00:00"));
-    const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
+    const isValid = new ScheduleRuleValidator().hasConflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
@@ -32,7 +32,7 @@ test("Must compare conflicting schedule rules exact-same conflict", function () 
             new Interval("10:00", "11:00")
         ]
     ).generate(new Date("2022-08-03T00:00:00"));
-    const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
+    const isValid = new ScheduleRuleValidator().hasConflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
@@ -48,7 +48,7 @@ test("Must compare conflicting schedule rules left-center conflict", function ()
             new Interval("07:00", "08:30")
         ]
     ).generate(new Date("2022-08-03T00:00:00"));
-    const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
+    const isValid = new ScheduleRuleValidator().hasConflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
@@ -64,7 +64,7 @@ test("Must compare conflicting schedule rules center-right conflict", function (
             new Interval("10:30", "12:00")
         ]
     ).generate(new Date("2022-08-03T00:00:00"));
-    const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
+    const isValid = new ScheduleRuleValidator().hasConflictedSchedules(rule1, rule2);
     expect(isValid).toBeTruthy();
 });
 
@@ -80,6 +80,6 @@ test("Must compare non-conflicting schedule rules", function () {
             new Interval("11:30", "12:00")
         ]
     ).generate(new Date("2022-08-03T00:00:00"));
-    const isValid = new ScheduleRuleValidator().hasconflictedSchedules(rule1, rule2);
+    const isValid = new ScheduleRuleValidator().hasConflictedSchedules(rule1, rule2);
     expect(isValid).toBeFalsy();
 });
