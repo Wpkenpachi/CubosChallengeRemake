@@ -3,6 +3,7 @@ import { Times } from "./Schedule";
 
 export default class ScheduleRuleValidator {
     hasconflictedSchedules(firstRule: Times[], secondRule: Times[]): boolean {
+        // Times[] ->  { day: Date, intervals:[{start: "08:00", end: "09:00"}, {{start: "09:00", end: "09:10" }}] }
         return firstRule.some(rule1 => {
             //console.log('=============================================================');
             //console.log(`Day ${d1+1}`);
