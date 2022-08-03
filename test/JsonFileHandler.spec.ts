@@ -24,7 +24,6 @@ test("Must remove the item of index 1 in json file", function() {
     jsonHandler.insert({n: 1});
     jsonHandler.insert({n: 2});
     jsonHandler.insert({n: 3});
-    jsonHandler.delete(1)
-    console.log(jsonHandler.getAll());
+    jsonHandler.delete(1);
     expect(jsonHandler.getAll()[1]).toEqual({n: 3});
 });
